@@ -1,0 +1,29 @@
+<!--
+Params:
+-prefix
+-element
+-user
+-base-url
+-container_to_trigger_id
+-trigger_event
+-->
+<tr data_id="<%=prefix%>-<%=element.id%>-share-dialog-current-users-user-<%=user.id%>">
+	<td><%= label_tag "share_user_username_label", user.username%></td>
+	<td>
+		<% if @current_user == element.user and options_enabled or override%>
+			<select class="share-dialog-current-user-access">
+				<% element.permissions.each do |permission| %>
+					<option <%if permission.users.include?(user) %> selected="selected" <% end %> value="<%= permission.type_id %>"><%= permission.type_name %></option>
+				<% end %>
+			</select>
+		<% end %>
+	</td>
+	<% if @current_user = user or @current_user == element.user and options_enabled or override %>
+		<td><button class="remove-button">Remove</button></td>
+	<% end %>
+</tr>
+<% if !json %>
+	<script>
+		$(function(){ShareCurrentUserV2("<%=element.id%>", "<%=user.id%>","<%=prefix%>","<%=base_url%>","<%=container_to_trigger_id%>","<%=trigger_event%>") });
+	</script>
+<% end %>

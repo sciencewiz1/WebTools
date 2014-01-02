@@ -1,0 +1,12 @@
+<table data_id="<%=prefix%>-<%=element.id%>-share-dialog-current-users-results">
+	<tr>
+		<th class="th100">Username</th>
+		<th class="th100">Access Level</th>
+	</tr>
+	<%element.users.each do |user| %>
+		<% if element.user != user %>
+			<%= render "templates/share_current_user_v2", :json => json, :element=>element, :user=>user, :prefix => prefix, :base_url => base_url, :options_enabled => options_enabled, :override=>override, :container_to_trigger_id => container_to_trigger_id, :trigger_event => trigger_event %>
+		<% end %>
+	<%end%>
+</table>
+<div data_id="<%=prefix%>-<%=element.id%>-share-dialog-current-users-results-status" class="status"></div> 

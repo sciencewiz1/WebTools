@@ -1,0 +1,15 @@
+<!--
+Params:
+-prefix
+-element
+-users
+-base_url
+-options_enabled
+-->
+<div id="<%=prefix%>-<%=element.id%>-share-dialog-add-users-results">
+	<table>
+		<%users.each do |user| %>
+			<%= render "templates/share_new_user_v2", :json=>json, :element=>element, :user=>user, :prefix => prefix, :base_url => base_url, :options_enabled => options_enabled, :override => override%>
+		<%end%>
+	</table>
+</div>

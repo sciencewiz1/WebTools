@@ -1,0 +1,19 @@
+<!--
+Arguments:
+-prefix
+-element
+-user
+-->
+<tr data_id="<%=prefix%>-<%=element.id%>-share-dialog-new-users-user-<%=user.id%>">
+	<td><%= label_tag "share_user_username_label", user.username%></td>
+	<td>
+		<% if @current_user == element.user or override%>
+			<button class="share-dialog-new-users-share-button btn btn-primary btn-xs">Share</button>
+		<% end %>
+	</td>
+</tr>
+<% if !json %>
+	<script>
+		$(function(){ShareNewUserV2("<%=element.id%>", "<%=user.id%>","<%=prefix%>","<%=base_url%>") });
+	</script>
+<% end %>

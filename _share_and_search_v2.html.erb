@@ -1,0 +1,37 @@
+<!--
+args: 
+-prefix
+-element
+-base_url
+-options_enabled
+-container_to_trigger_id
+-trigger_event
+-override
+-->
+<div id = "share-dialog-wrapper">
+	<div data_id="<%=prefix%>-<%=element.id%>-share-dialog" class="<%=prefix%>-share">
+		<div class="share-dialog-current-users">
+			<h3>Users Currently with Access to this <%=prefix%>:</h3>
+			<div class="share-dialog-current-users-results results-box">
+				<%= render "templates/share_current_users_v2", :json => false, :element=>element, :prefix => prefix, :base_url => base_url, :options_enabled => options_enabled, :override => override, :container_to_trigger_id =>container_to_trigger_id, :trigger_event => trigger_event %>
+			</div>
+		</div>
+		<% if element.user == @current_user or override %>
+			<div class="share-dialog-add-users">
+				<div class="well">
+					<h3>Share this <%=prefix%> with a new user:</h3>
+					Search by Username <input class="share-dialog-add-users-input" type="text"/>
+				</div>
+				<br>
+				<b>Search Results:</b>
+				<div class="share-dialog-add-users-results-outer results-box">
+				</div>
+			</div>
+		<%end%>
+	</div>
+</div>
+<% if !json %>
+	<script>
+		$(function(){SearchAndShareV2("<%=element.id%>","<%=prefix%>","<%=base_url%>")});
+	</script>
+<% end %>
